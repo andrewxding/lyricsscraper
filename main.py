@@ -1,12 +1,15 @@
 import requests
 import json
 from bs4 import BeautifulSoup
+from .spotilib import *
+from .wikiScrape import *
+
 
 base_url = "https://api.genius.com"
 headers = { 'Accept' : 'application/json', 'Authorization': 'Bearer tokenhere'}
 
-song_title = "Waves"
-artist_name = "Kanye West"
+song_title = song()
+artist_name = artist()
 
 def lyrics_from_song_api_path(song_api_path):
   song_url = base_url + song_api_path
@@ -36,3 +39,4 @@ for hit in json["response"]["hits"]:
         song_api_path = song_info["result"]["api_path"]
         print (lyrics_from_song_api_path(song_api_path))
         break
+ print(getArtistInfo(artist_name))
